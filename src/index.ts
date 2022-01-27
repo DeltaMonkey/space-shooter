@@ -57,9 +57,24 @@ function gameLoop(
   var bullet: Bullet = gun.shootAction(BULLET_SPEED);
   if (bullet) bullets.push(bullet);
 
-  bullets.forEach((bullet: Bullet) => {
+  var deleteIndexList: number[] = [];
+
+  bullets.forEach((bullet: Bullet, index: number) => {
     bullet.moveBullet();
+    if(collision.bulletWallCollisionCheck(bullet, view)){
+      deleteIndexList.push(index);
+    }
+    if(collision.bulletEnemyCollisionCheck(bullet, enemies)){
+      deleteIndexList.push(index);
+      score++;
+      view.drawScore(score);
+    }
   });
+
+  for(var i: number = 0; i < deleteIndexList.length; i++)
+  {
+    bullets.splice(deleteIndexList[i], 1);
+  }
 
   view.drawBullets(bullets);
 

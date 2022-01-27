@@ -99,7 +99,7 @@ export class Gun {
     if (e.code === "ArrowLeft" || e.key === "ArrowLeft") this.moveLeft = true;
     if (e.code === "ArrowRight" || e.key === "ArrowRight")
       this.moveRight = true;
-    if (e.code === "Space" || e.key === "Space")
+    if (e.code === "KeyX" || e.key === "X")
     {
       this.shoot = true;
     } 
